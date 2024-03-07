@@ -8,8 +8,12 @@ const History = () => {
   const [history, setHistory] = useState<any>([]);
 
   const fetchData = () => {
-    const history = JSON.parse(localStorage.getItem("history") || "[]");
-    setHistory(history);
+    try {
+      const history = JSON.parse(localStorage.getItem("history") || "[]");
+      setHistory(history);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -26,7 +30,7 @@ const History = () => {
       </h1>
       <div className="flex flex-col w-full  items-center  p-5">
         <div className="lg:w-1/2 w-full w-fullrounded-lg shadow-lg p-5  ">
-          {history.length > 0 &&
+          {history.length > 0 ? (
             history.map((item: any) => (
               <div
                 key={
@@ -53,7 +57,12 @@ const History = () => {
                   </a>
                 </div>
               </div>
-            ))}
+            ))
+          ) : (
+            <h1 className="text-center font-bold text-2xl mt-5 mb-7">
+              No History
+            </h1>
+          )}
         </div>
       </div>
     </div>
