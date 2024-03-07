@@ -2,10 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const History = () => {
-  const history = JSON.parse(localStorage.getItem("history") || "[]");
-  console.log(history);
+  const [history, setHistory] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (typeof localStorage !== "undefined") {
+      const localHistory = localStorage.getItem("history");
+      if (localHistory) {
+        setHistory(JSON.parse(localHistory));
+      }
+    }
+  }, []);
+
   return (
     <div>
       <h1 className="text-center font-bold text-2xl mt-5 mb-7">

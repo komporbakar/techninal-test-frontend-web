@@ -25,24 +25,27 @@ export default function Home() {
   const contentSecond = news?.slice(7, 11);
 
   const saveHistory = async (data: any) => {
-    console.log(data);
-    if (!data.url) {
-      return;
-    }
+    try {
+      if (!data.url) {
+        return;
+      }
 
-    const history = JSON.parse(localStorage.getItem("history") || "[]");
+      const history = JSON.parse(localStorage.getItem("history") || "[]");
 
-    const isDuplicate = history.some((item: any) => item.url === data.url);
-    if (isDuplicate) {
-      return;
+      const isDuplicate = history.some((item: any) => item.url === data.url);
+      if (isDuplicate) {
+        return;
+      }
+      const articles = {
+        urlToImage: data.urlToImage,
+        title: data.title,
+        url: data.url,
+      };
+      history.push(articles);
+      localStorage.setItem("history", JSON.stringify(history));
+    } catch (error) {
+      console.error(error);
     }
-    const articles = {
-      urlToImage: data.urlToImage,
-      title: data.title,
-      url: data.url,
-    };
-    history.push(articles);
-    localStorage.setItem("history", JSON.stringify(history));
   };
 
   const handleSearch = async () => {
