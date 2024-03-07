@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -8,11 +6,9 @@ const History = () => {
   const [history, setHistory] = useState<any[]>([]);
 
   useEffect(() => {
-    if (typeof localStorage !== "undefined") {
-      const localHistory = localStorage.getItem("history");
-      if (localHistory) {
-        setHistory(JSON.parse(localHistory));
-      }
+    const localHistory = localStorage.getItem("history");
+    if (localHistory) {
+      setHistory(JSON.parse(localHistory));
     }
   }, []);
 
