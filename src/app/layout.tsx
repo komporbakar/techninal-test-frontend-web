@@ -17,6 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
+      {/* <footer className="flex flex-row justify-center py-2 mt-5 bg-slate-200">
+        &copy; Arif Nurrohman
+      </footer> */}
     </html>
   );
 }
