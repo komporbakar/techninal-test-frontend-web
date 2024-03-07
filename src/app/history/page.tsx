@@ -1,19 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const History = () => {
-  const [history, setHistory] = useState<any[]>([]);
+  const [history, setHistory] = useState<any>([]);
+
+  const fetchData = () => {
+    const history = JSON.parse(localStorage.getItem("history") || "[]");
+    setHistory(history);
+  };
 
   useEffect(() => {
-    try {
-      const localHistory = localStorage.getItem("history");
-      if (localHistory) {
-        setHistory(JSON.parse(localHistory));
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    fetchData();
   }, []);
 
   return (
