@@ -6,9 +6,13 @@ const History = () => {
   const [history, setHistory] = useState<any[]>([]);
 
   useEffect(() => {
-    const localHistory = localStorage.getItem("history");
-    if (localHistory) {
-      setHistory(JSON.parse(localHistory));
+    try {
+      const localHistory = localStorage.getItem("history");
+      if (localHistory) {
+        setHistory(JSON.parse(localHistory));
+      }
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 
