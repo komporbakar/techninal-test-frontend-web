@@ -15,19 +15,23 @@ const History = () => {
         History Reading
       </h1>
       <div className="flex flex-col w-full  items-center  p-5">
-        <div className="md:w-1/2 w-fullrounded-lg shadow-lg p-5  ">
+        <div className="lg:w-1/2 w-full w-fullrounded-lg shadow-lg p-5  ">
           {history.length > 0 &&
             history.map((item: any) => (
               <div
-                key={item?.urlToImage}
+                key={
+                  item?.urlToImage ?? "https://picsum.photos/600/300?random=1"
+                }
                 className="w-full border border-slate-200 rounded-lg shadow-lg p-5 mb-3 flex flex-row"
               >
                 <Image
-                  src={item?.urlToImage}
+                  src={
+                    item?.urlToImage ?? "https://picsum.photos/600/300?random=1"
+                  }
                   alt={item?.title}
                   width={600}
                   height={400}
-                  className="w-1/3 "
+                  className="w-1/3  "
                 />
                 <div className="ms-5 flex flex-col">
                   <h1 className="mt-5 font-bold text-lg">{item?.title}</h1>
